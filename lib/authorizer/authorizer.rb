@@ -24,7 +24,12 @@ module Authorizer
 
     class ActionController::Metal
         def check_authorization(resource, authorizee)
-            resource.class.authorized?("#{params[:controller]}##{action_name}", resource, authorizee)
+            result = resource.class.authorized?("#{params[:controller]}##{action_name}", resource, authorizee)
+            if result
+              result
+            else
+              render json: {message: 'You are not permitted to access that resource'}, status: 403
+            end
         end
     end
 
