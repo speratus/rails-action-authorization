@@ -20,4 +20,19 @@ class Authorizer::Test < ActiveSupport::TestCase
   test "adds instance method" do 
     assert_respond_to(PostsController.new, :check_authorization)
   end
+
+  test "can add a single check" do
+    User.check_perm('test') {|u, r| true}
+    user = User.new
+    assert_equal user, User.authorized?('test', user, nil)
+  end
+
+  test "can add multiple checks" do
+    test_names = ['test', 'test2', 'test3']
+    User.check_perm(*test_names) {|u, r| true}
+    user = User.new
+    test_names.each do |n|
+      assert_equal user, User.authorized?(n, user, nil)
+    end
+  end
 end

@@ -9,9 +9,9 @@ module Authorizer
             return @@perms
           end
         
-          def self.check_perm(name, &block)
+          def self.check_perm(*names, &block)
             perms = self.get_perms
-            perms[name.to_sym] = block
+            names.each {|name| perms[name.to_sym] = block}
           end
         
           def self.authorized?(action, resource, authorizee)
