@@ -35,4 +35,30 @@ class Authorizer::Test < ActiveSupport::TestCase
       assert_equal user, user.authorized?(n, nil)
     end
   end
+
+  test 'can authorize many at a time' do
+    Post.check_perm('test') {|u, r| true}
+    user = User.new
+    posts = []
+    5.times do
+      posts << Post.new
+    end
+    # puts "-------------"
+    # puts "About to create Resource"
+    r = Authorizer::Resource.new('test', user, *posts)
+    # puts "Verifying resource"
+    assert_equal posts, r.get
+  end
+
+  test 'can filter resources' do
+    Post.check_perm('test') {|p, r| [true, false].sample }
+
+    posts = []
+    9.times do
+      posts << Post.new
+    end
+
+    r = Authorizer::Resource.new('test', nil, *posts, behavior: :filter)
+    assert_operator posts.length, :>, r.get.length
+  end
 end
