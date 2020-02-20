@@ -6,7 +6,7 @@ class Authorizer::Test < ActiveSupport::TestCase
   end
 
   test "ensures authorized? is added" do
-    assert_respond_to(User, :authorized?)
+    assert_respond_to(User.new, :authorized?)
   end
 
   test "ensures get_perms is added" do
@@ -24,7 +24,7 @@ class Authorizer::Test < ActiveSupport::TestCase
   test "can add a single check" do
     User.check_perm('test') {|u, r| true}
     user = User.new
-    assert_equal user, User.authorized?('test', user, nil)
+    assert_equal user, user.authorized?('test', nil)
   end
 
   test "can add multiple checks" do
@@ -32,7 +32,33 @@ class Authorizer::Test < ActiveSupport::TestCase
     User.check_perm(*test_names) {|u, r| true}
     user = User.new
     test_names.each do |n|
-      assert_equal user, User.authorized?(n, user, nil)
+      assert_equal user, user.authorized?(n, nil)
     end
+  end
+
+  test 'can authorize many at a time' do
+    Post.check_perm('test') {|u, r| true}
+    user = User.new
+    posts = []
+    5.times do
+      posts << Post.new
+    end
+    # puts "-------------"
+    # puts "About to create Resource"
+    r = Authorizer::Resource.new('test', user, *posts)
+    # puts "Verifying resource"
+    assert_equal posts, r.get
+  end
+
+  test 'can filter resources' do
+    Post.check_perm('test') {|p, r| [true, false].sample }
+
+    posts = []
+    9.times do
+      posts << Post.new
+    end
+
+    r = Authorizer::Resource.new('test', nil, *posts, behavior: :filter)
+    assert_operator posts.length, :>, r.get.length
   end
 end
