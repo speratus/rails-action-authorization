@@ -29,7 +29,7 @@ module Authorizer
     def check_authorization(resource, authorizee, **options)
       action = "#{params[:controller]}##{action_name}"
 
-      if resource.respond_to(:length)
+      if resource.respond_to?(:length)
         r = Resource.new(action, authorizee, *resource, **options)
       else
         r = Resource.new(action, authorizee, resource, **options)
