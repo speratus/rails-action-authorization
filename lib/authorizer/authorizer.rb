@@ -61,6 +61,7 @@ module Authorizer
       end
 
       def get
+          byebug
           if @resources.length > 1 || @options[:as_array]
 
               behavior = @options[:behavior]
