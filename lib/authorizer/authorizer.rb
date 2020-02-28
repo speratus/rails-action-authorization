@@ -29,6 +29,7 @@ module Authorizer
     def check_authorization(resource, authorizee, **options)
       action = "#{params[:controller]}##{action_name}"
 
+      bybebug
       if resource.respond_to?(:length)
         # byebug
         options[:as_array] = true
@@ -62,7 +63,7 @@ module Authorizer
       def get
           if @resources.length > 1 || @options[:as_array]
 
-              behavior = options[:behavior]
+              behavior = @options[:behavior]
               if !behavior
                   behavior = :allow_all
               end
