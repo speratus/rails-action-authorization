@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    authorizer (0.4.3d)
+    authorizer (0.4.7)
       rails (~> 6.0.2, >= 6.0.2.1)
 
 GEM

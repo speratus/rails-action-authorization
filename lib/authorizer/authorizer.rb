@@ -30,6 +30,7 @@ module Authorizer
       action = "#{params[:controller]}##{action_name}"
 
       if resource.respond_to?(:length)
+        return resource if resource.length == 0
         r = Resource.new(action, authorizee, *resource, **options)
         result = r.get
       else
@@ -56,7 +57,8 @@ module Authorizer
       end
 
       def get
-        return @resource if @resource.legnth == 0
+        return @resources if @resources.nil?
+        return @resources if @resources.length == 0
 
         behavior = @options[:behavior]
         if !behavior
