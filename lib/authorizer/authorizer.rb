@@ -33,6 +33,7 @@ module Authorizer
         byebug
         r = Resource.new(action, authorizee, *resource, **options)
       else
+        byebug
         r = Resource.new(action, authorizee, resource, **options)
       end
 
