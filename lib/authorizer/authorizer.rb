@@ -30,10 +30,10 @@ module Authorizer
       action = "#{params[:controller]}##{action_name}"
 
       if resource.respond_to?(:length)
-        byebug
+        # byebug
         r = Resource.new(action, authorizee, *resource, **options)
       else
-        byebug
+        # byebug
         r = Resource.new(action, authorizee, resource, **options)
       end
 
@@ -50,7 +50,7 @@ module Authorizer
       attr_reader :action, :actor, :resources, :options
 
       def initialize(action, actor, *resources, **options)
-          byebug
+          # byebug
           @action = action
           @actor = actor
           @resources = resources
@@ -74,7 +74,8 @@ module Authorizer
                   behavior_filter
               end
           else
-              @resources[0].authorized?(@action, @actor)
+            return @resources if @resources.length == 0
+            @resources[0].authorized?(@action, @actor)
           end
       end
 

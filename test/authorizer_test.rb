@@ -61,4 +61,11 @@ class Authorizer::Test < ActiveSupport::TestCase
     r = Authorizer::Resource.new('test', nil, *posts, behavior: :filter)
     assert_operator posts.length, :>, r.get.length
   end
+
+  test 'returns resources if resources is an empty array' do
+    Post.check_perm('test') {|p, r| true}
+    posts = []
+    r = Authorizer::Resource.new('test', nil, *posts)
+    assert_equal posts, r.get
+  end
 end

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    authorizer (0.3.0)
+    authorizer (0.4.3d)
       rails (~> 6.0.2, >= 6.0.2.1)
 
 GEM
@@ -63,7 +63,7 @@ GEM
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2)
     builder (3.2.4)
-    concurrent-ruby (1.1.5)
+    concurrent-ruby (1.1.6)
     crass (1.0.6)
     erubi (1.9.0)
     globalid (0.4.2)
@@ -83,9 +83,9 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.14.0)
     nio4r (2.5.2)
-    nokogiri (1.10.7)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
-    rack (2.2.0)
+    rack (2.2.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.0.2.1)
