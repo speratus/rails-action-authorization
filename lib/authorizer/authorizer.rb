@@ -55,6 +55,7 @@ module Authorizer
       end
 
       def get
+        byebug
           if @resources.length > 1
 
               behavior = options[:behavior]
