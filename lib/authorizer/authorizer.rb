@@ -48,6 +48,7 @@ module Authorizer
       attr_reader :action, :actor, :resources, :options
 
       def initialize(action, actor, *resources, **options)
+          byebug
           @action = action
           @actor = actor
           @resources = resources
@@ -55,7 +56,6 @@ module Authorizer
       end
 
       def get
-        byebug
           if @resources.length > 1
 
               behavior = options[:behavior]
