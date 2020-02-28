@@ -29,7 +29,7 @@ module Authorizer
     def check_authorization(resource, authorizee, **options)
       action = "#{params[:controller]}##{action_name}"
 
-      bybebug
+      byebug
       if resource.respond_to?(:length)
         # byebug
         options[:as_array] = true
