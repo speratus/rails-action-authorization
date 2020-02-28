@@ -1,7 +1,7 @@
 # require_relative './railtie'
 
 module Authorizer
-  OPTIONS = [:authorize_associated, :behavior]
+  OPTIONS = [:authorize_associated, :behavior, :as_array]
 
   POSSIBILITIES = [:allow_all, :deny_all, :filter]
   class ActiveRecord::Base
@@ -31,6 +31,7 @@ module Authorizer
 
       if resource.respond_to?(:length)
         # byebug
+        options[:as_array] = true
         r = Resource.new(action, authorizee, *resource, **options)
       else
         # byebug
@@ -58,7 +59,7 @@ module Authorizer
       end
 
       def get
-          if @resources.length > 1
+          if @resources.length > 1 || @options[:as_array]
 
               behavior = options[:behavior]
               if !behavior
