@@ -30,6 +30,7 @@ module Authorizer
       action = "#{params[:controller]}##{action_name}"
 
       if resource.respond_to?(:length)
+        byebug
         r = Resource.new(action, authorizee, *resource, **options)
       else
         r = Resource.new(action, authorizee, resource, **options)
