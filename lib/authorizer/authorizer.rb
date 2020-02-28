@@ -1,7 +1,7 @@
 # require_relative './railtie'
 
 module Authorizer
-  OPTIONS = [:authorize_associated, :behavior, :as_array]
+  OPTIONS = [:authorize_associated, :behavior]
 
   POSSIBILITIES = [:allow_all, :deny_all, :filter]
   class ActiveRecord::Base
@@ -29,17 +29,13 @@ module Authorizer
     def check_authorization(resource, authorizee, **options)
       action = "#{params[:controller]}##{action_name}"
 
-      byebug
       if resource.respond_to?(:length)
-        # byebug
-        options[:as_array] = true
         r = Resource.new(action, authorizee, *resource, **options)
+        result = r.get
       else
-        # byebug
-        r = Resource.new(action, authorizee, resource, **options)
+        result = resource.authorized?(action, authorizee)
       end
 
-      result = r.get
       if result
         result
       else
@@ -53,7 +49,6 @@ module Authorizer
       attr_reader :action, :actor, :resources, :options
 
       def initialize(action, actor, *resources, **options)
-          # byebug
           @action = action
           @actor = actor
           @resources = resources
@@ -61,26 +56,21 @@ module Authorizer
       end
 
       def get
-          byebug
-          if @resources.length > 1 || @options[:as_array]
+        return @resource if @resource.legnth == 0
 
-              behavior = @options[:behavior]
-              if !behavior
-                  behavior = :allow_all
-              end
+        behavior = @options[:behavior]
+        if !behavior
+            behavior = :allow_all
+        end
 
-              case behavior
-              when :allow_all
-                  behavior_allow_all
-              when :deny_all
-                  behavior_deny_all
-              when :filter
-                  behavior_filter
-              end
-          else
-            return @resources if @resources.length == 0
-            @resources[0].authorized?(@action, @actor)
-          end
+        case behavior
+        when :allow_all
+            behavior_allow_all
+        when :deny_all
+            behavior_deny_all
+        when :filter
+            behavior_filter
+        end
       end
 
       private

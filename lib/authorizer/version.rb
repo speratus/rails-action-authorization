@@ -1,3 +1,3 @@
 module Authorizer
-  VERSION = '0.4.6a3'
+  VERSION = '0.4.7'
 end
