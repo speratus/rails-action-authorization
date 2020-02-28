@@ -43,6 +43,7 @@ module Authorizer
         result
       else
         render json: {message: 'You are not permitted to access that resource'}, status: 403
+        return
       end
     end
   end
