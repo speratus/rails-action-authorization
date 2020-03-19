@@ -13,9 +13,10 @@ module Authorizer
     end
 
     def authorized?(action, authorizee)
+      symbol = action.to_sym
       perms = self.class.get_perms
       authorized = false
-      authorized = perms[action.to_sym].(self, authorizee) if perms[action.to_sym]
+      authorized = perms[symbol].(self, authorizee) if perms[symbol]
       authorized ? self : nil
     end
   end
