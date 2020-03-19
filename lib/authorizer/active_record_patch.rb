@@ -17,7 +17,12 @@ module Authorizer
       perms = self.class.get_perms
       authorized = false
       authorized = perms[symbol].(self, authorizee) if perms[symbol]
-      authorized ? self : nil
+
+      raise Authorizer::ForbiddenError.new(
+        "Actor #{authorizee} is not authorized to perform action #{action} on resource #{self}."
+      ) unless authorized
+
+      self
     end
   end
 end
