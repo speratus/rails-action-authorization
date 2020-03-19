@@ -1,4 +1,3 @@
-# require_relative './railtie'
 require_relative './active_record_patch'
 require_relative './action_controller_patch'
 require_relative './resource'
