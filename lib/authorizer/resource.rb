@@ -43,7 +43,14 @@ module Authorizer
         end
       
         def behavior_filter
-            results = @resources.filter {|r| r.authorized?(@action, @actor) != nil}
+            results = @resources.filter do |r| 
+                begin
+                    r.authorized?(@action, @actor) != nil
+                    r
+                rescue Authorizer::ForbiddenError
+                    false
+                end
+            end
             results.length > 0 ? results : nil
         end
     end
