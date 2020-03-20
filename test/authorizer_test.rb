@@ -68,4 +68,17 @@ class Authorizer::Test < ActiveSupport::TestCase
     r = Authorizer::Resource.new('test', nil, *posts)
     assert_equal posts, r.get
   end
+
+  test 'returns all resources even when some are not authorized' do
+    Post.check_perm('test') {|p, r| p.content != 'no'}
+    posts = []
+
+    5.times do
+      posts << Post.new(content: 'yes')
+    end
+    posts << Post.new(content: 'no')
+
+    r = Authorizer::Resource.new('test', nil, *posts, behavior: :allow_all)
+    assert_equal posts.length, r.get.length
+  end
 end
