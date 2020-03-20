@@ -45,7 +45,7 @@ class Authorizer::Test < ActiveSupport::TestCase
     end
     # puts "-------------"
     # puts "About to create Resource"
-    r = Authorizer::Resource.new('test', user, *posts)
+    r = ActionAuthorization::Resource.new('test', user, *posts)
     # puts "Verifying resource"
     assert_equal posts, r.get
   end
@@ -58,14 +58,14 @@ class Authorizer::Test < ActiveSupport::TestCase
       posts << Post.new
     end
 
-    r = Authorizer::Resource.new('test', nil, *posts, behavior: :filter)
+    r = ActionAuthorization::Resource.new('test', nil, *posts, behavior: :filter)
     assert_operator posts.length, :>, r.get.length
   end
 
   test 'returns resources if resources is an empty array' do
     Post.check_perm('test') {|p, r| true}
     posts = []
-    r = Authorizer::Resource.new('test', nil, *posts)
+    r = ActionAuthorization::Resource.new('test', nil, *posts)
     assert_equal posts, r.get
   end
 
@@ -78,7 +78,7 @@ class Authorizer::Test < ActiveSupport::TestCase
     end
     posts << Post.new(content: 'no')
 
-    r = Authorizer::Resource.new('test', nil, *posts, behavior: :allow_all)
+    r = ActionAuthorization::Resource.new('test', nil, *posts, behavior: :allow_all)
     assert_equal posts.length, r.get.length
   end
 
@@ -90,7 +90,7 @@ class Authorizer::Test < ActiveSupport::TestCase
       posts << Post.new
     end
 
-    r = Authorizer::Resource.new('test', nil, *posts)
+    r = ActionAuthorization::Resource.new('test', nil, *posts)
     assert_raises(Authorizer::ForbiddenError) do
       r.get
     end

@@ -1,4 +1,4 @@
-module Authorizer
+module ActionAuthorization
     class Resource
         attr_reader :action, :actor, :resources, :options
   
