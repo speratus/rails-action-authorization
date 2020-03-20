@@ -1,4 +1,4 @@
-module Authorizer
+module ActionAuthorization
     OPTIONS = [:authorize_associated, :behavior]
 
     POSSIBILITIES = [:allow_all, :deny_all, :filter]
