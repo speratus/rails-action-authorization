@@ -1,3 +1,3 @@
-module Authorizer
+module ActionAuthorization
   VERSION = '0.4.8'
 end

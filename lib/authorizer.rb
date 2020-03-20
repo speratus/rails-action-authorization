@@ -1,5 +1,5 @@
 require "authorizer/railtie"
 
-module Authorizer
+module ActionAuthorization
   # Your code goes here...
 end

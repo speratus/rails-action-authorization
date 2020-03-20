@@ -5,8 +5,8 @@ require "authorizer/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
-  spec.name        = "authorizer"
-  spec.version     = Authorizer::VERSION
+  spec.name        = "rails-action-authorization"
+  spec.version     = ActionAuthorization::VERSION
   spec.authors     = ["Andrew Luchuk"]
   spec.email       = ["andrew.luchuk@outlook.com"]
   # spec.homepage    = "TODO"
