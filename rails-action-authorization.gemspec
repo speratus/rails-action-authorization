@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.version     = ActionAuthorization::VERSION
   spec.authors     = ["Andrew Luchuk"]
   spec.email       = ["andrew.luchuk@outlook.com"]
-  # spec.homepage    = "TODO"
+  spec.homepage    = "https://github.com/speratus/rails-action-authorization"
   spec.summary     = "Adds a custom authorization system to rails"
   spec.description = "Adds a custom authorization system to Rails."
   spec.license     = "MIT"
