@@ -81,4 +81,18 @@ class Authorizer::Test < ActiveSupport::TestCase
     r = Authorizer::Resource.new('test', nil, *posts, behavior: :allow_all)
     assert_equal posts.length, r.get.length
   end
+
+  test 'raises an error when all resources are forbidden' do
+    Post.check_perm('test') {|p,r| false}
+    posts = []
+
+    5.times do
+      posts << Post.new
+    end
+
+    r = Authorizer::Resource.new('test', nil, *posts)
+    assert_raises(Authorizer::ForbiddenError) do
+      r.get
+    end
+  end
 end
