@@ -15,12 +15,7 @@ module Authorizer
                 result = resource.authorized?(action, authorizee)
             end
 
-            if result
-                result
-            else
-                render json: {message: 'You are not permitted to access that resource'}, status: 403
-                return
-            end
+            result
         end
     end
 end
