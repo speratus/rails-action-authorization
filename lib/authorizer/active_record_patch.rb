@@ -1,4 +1,4 @@
-module Authorizer
+module ActionAuthorization
   class ActiveRecord::Base
     def self.get_perms
       unless (self.class_variables.include?(:'@@perms'))
