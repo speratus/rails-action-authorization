@@ -3,6 +3,7 @@ module Authorizer
     def self.get_perms
       unless (self.class_variables.include?(:'@@perms'))
         @@perms = {}
+        @@fallback_rule = nil
       end
       return @@perms
     end
