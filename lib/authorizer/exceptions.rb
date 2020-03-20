@@ -1,4 +1,4 @@
-module Authorizer
+module ActionAuthorization
     class AuthorizationError < ::StandardError
 
     end

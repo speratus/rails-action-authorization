@@ -91,7 +91,7 @@ class Authorizer::Test < ActiveSupport::TestCase
     end
 
     r = ActionAuthorization::Resource.new('test', nil, *posts)
-    assert_raises(Authorizer::ForbiddenError) do
+    assert_raises(ActionAuthorization::ForbiddenError) do
       r.get
     end
   end
