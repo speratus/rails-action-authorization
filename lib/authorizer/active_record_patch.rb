@@ -22,7 +22,7 @@ module Authorizer
 
       authorized = false
       authorized = perms[symbol].(self, authorizee) if perms[symbol]
-      authorized = @@fallback_rule.(self, authorizee) if @@fallback_rule
+      authorized = @@fallback_rule.(self, authorizee) if @@fallback_rule && !perms[symbol]
 
       raise ForbiddenError.new(
         "Actor #{authorizee} is not authorized to perform action #{action} on resource #{self}."
