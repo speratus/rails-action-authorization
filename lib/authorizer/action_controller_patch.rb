@@ -12,7 +12,7 @@ module ActionAuthorization
                 r = Resource.new(action, authorizee, *resource, **options)
                 result = r.get
             else
-                result = resource.authorized?(action, authorizee)
+                result = resource.is_authorized(action, authorizee)
             end
 
             result
