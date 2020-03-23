@@ -33,7 +33,7 @@ module ActionAuthorization
         def collect_permitted(return_res: false)
             results = @resources.filter do |r|
                 begin
-                    r.authorized?(@action, @actor) != nil
+                    r.is_authorized(@action, @actor) != nil
                 rescue
                     false
                 end
