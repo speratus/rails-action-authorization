@@ -8,7 +8,7 @@ module ActionAuthorization
       return @@perms
     end
 
-    def self.check_perm(*names, &block)
+    def self.define_rule(*names, &block)
       perms = self.get_perms
       names.each {|name| perms[name.to_sym] = block}
     end
@@ -17,7 +17,7 @@ module ActionAuthorization
       @@fallback_rule = rule
     end
 
-    def authorized?(action, authorizee)
+    def is_authorized(action, authorizee)
       symbol = action.to_sym
       perms = self.class.get_perms
 
