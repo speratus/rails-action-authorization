@@ -11,11 +11,11 @@ Gem::Specification.new do |spec|
   spec.email       = ["andrew.luchuk@outlook.com"]
   spec.homepage    = "https://github.com/speratus/rails-action-authorization"
   spec.summary     = "Rails Action Authorization adds an authorization framework for controller actions."
-  spec.description = 'Rails Action Authorization adds an authorization framework for controller actions. '\
-                     'Rails Action Authorization is designed to be extremely lightweight and flexible, '\
-                     'enabling developers to spend less time trying to build complex authorization systems. '\
-                     'It\'s unopinionated design makes it easy to define any kind of authorization rules with '\
-                     'minimal effort.'
+  spec.description = "Rails Action Authorization adds an authorization framework for controller actions. "\
+                     "Rails Action Authorization is designed to be extremely lightweight and flexible, "\
+                     "enabling developers to spend less time trying to build complex authorization systems. "\
+                     "It\'s unopinionated design makes it easy to define any kind of authorization rules with "\
+                     "minimal effort."
   spec.license     = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
