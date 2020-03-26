@@ -3,9 +3,13 @@ module ActionAuthorization
     def self.get_perms
       unless (self.class_variables.include?(:'@@perms'))
         @@perms = {}
-        @@fallback_rule = nil
       end
+      init_fallback_rule
       return @@perms
+    end
+    
+    def self.init_fallback_rule
+      @@fallback_rule = nil unless (self.class_variable_defined?(:@@fallback_rule))
     end
 
     def self.define_rule(*names, &block)
