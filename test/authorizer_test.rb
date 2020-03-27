@@ -95,4 +95,8 @@ class Authorizer::Test < ActiveSupport::TestCase
       r.get
     end
   end
+
+  test 'loads fixtures' do
+    assert_equal 2, Post.count
+  end
 end
