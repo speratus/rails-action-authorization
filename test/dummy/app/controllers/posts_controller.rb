@@ -1,5 +1,10 @@
 class PostsController < ApplicationController
 
+    def index
+        posts = check_authorization(Post.all, current_user)
+        render json: posts
+    end
+
     def show
         post = check_authorization(Post.find_by(id: params[:id]), current_user)
         render json: post
