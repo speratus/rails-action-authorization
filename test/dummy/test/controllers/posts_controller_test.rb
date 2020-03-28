@@ -10,7 +10,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     user = User.first
 
     get "/posts/#{post.id}", headers: {"xUser-Id": user.id}
-    puts @response.body.class
+
     assert_equal post.to_json, @response.body
   end
 
