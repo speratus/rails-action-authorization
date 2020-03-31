@@ -10,6 +10,11 @@ class PostsController < ApplicationController
         render json: post
     end
 
+    def refuse_index
+        posts = check_authorization(Post.all, current_user, behavior: :deny_all)
+        render json: posts
+    end
+
     private
 
     def current_user
