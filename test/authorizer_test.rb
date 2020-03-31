@@ -43,10 +43,8 @@ class Authorizer::Test < ActiveSupport::TestCase
     5.times do
       posts << Post.new
     end
-    # puts "-------------"
-    # puts "About to create Resource"
+    
     r = ActionAuthorization::Resource.new('test', user, *posts)
-    # puts "Verifying resource"
     assert_equal posts, r.get
   end
 
@@ -98,5 +96,11 @@ class Authorizer::Test < ActiveSupport::TestCase
 
   test 'loads fixtures' do
     assert_equal 2, Post.count
+  end
+
+  test 'correctly adds fallback rule' do
+    Post.set_fallback_rule {puts "Hello Fallback Rule"}
+
+    assert_equal true, Post.class_variable_defined?(:@@fallback_rule)
   end
 end
