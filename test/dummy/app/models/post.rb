@@ -8,4 +8,8 @@ class Post < ApplicationRecord
   define_rule 'posts#index' do |p, u|
     !u.nil?
   end
+
+  define_rule 'posts#refuse_index' do |p, u|
+    !u.nil?
+  end
 end
