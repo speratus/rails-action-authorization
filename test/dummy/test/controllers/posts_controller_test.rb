@@ -21,4 +21,12 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     get posts_url, headers: {"xUser-Id": user.id}
     assert_equal posts.to_json, @response.body
   end
+
+  test 'can correctly identify behaviors' do
+    posts = Post.all
+    user = User.first
+
+    get '/posts/refuse_index', headers: {"xUser-Id": user.id}
+    assert_equal posts.to_json, @response.body
+  end
 end
