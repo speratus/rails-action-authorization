@@ -5,13 +5,17 @@ require "authorizer/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
-  spec.name        = "authorizer"
-  spec.version     = Authorizer::VERSION
+  spec.name        = "rails-action-authorization"
+  spec.version     = ActionAuthorization::VERSION
   spec.authors     = ["Andrew Luchuk"]
   spec.email       = ["andrew.luchuk@outlook.com"]
-  # spec.homepage    = "TODO"
-  spec.summary     = "Adds a custom authorization system to rails"
-  spec.description = "Adds a custom authorization system to Rails."
+  spec.homepage    = "https://github.com/speratus/rails-action-authorization"
+  spec.summary     = "Rails Action Authorization adds an authorization framework for controller actions."
+  spec.description = "Rails Action Authorization adds an authorization framework for controller actions. "\
+                     "Rails Action Authorization is designed to be extremely lightweight and flexible, "\
+                     "enabling developers to spend less time trying to build complex authorization systems. "\
+                     "It\'s unopinionated design makes it easy to define any kind of authorization rules with "\
+                     "minimal effort."
   spec.license     = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -28,4 +32,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rails", "~> 6.0.2", ">= 6.0.2.1"
 
   spec.add_development_dependency "sqlite3"
+  spec.add_development_dependency 'codecov'
 end
