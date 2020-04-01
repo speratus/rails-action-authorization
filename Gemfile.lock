@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails-action-authorization (0.4.8)
+    rails-action-authorization (1.0.1)
       rails (~> 6.0.2, >= 6.0.2.1)
 
 GEM
