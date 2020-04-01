@@ -1,3 +1,3 @@
 module ActionAuthorization
-  VERSION = '0.4.8'
+  VERSION = '1.0.1'
 end
