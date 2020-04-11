@@ -1,5 +1,11 @@
 module ActionAuthorization
   class ActiveRecord::Base
+    ##
+    # This class contains all the patches to +ActiveRecord::Base+ that
+    # make this library function on the model side. You should only
+    # have to interact with these methods on concrete models and not by
+    # interacting with ActiveRecord::Base directly.
+
     def self.get_perms
       unless (self.class_variables.include?(:'@@perms'))
         @@perms = {}
