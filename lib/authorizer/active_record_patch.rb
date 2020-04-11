@@ -26,7 +26,7 @@ module ActionAuthorization
       perms = self.class.get_perms
 
       authorized = false
-      authorized = perms[symbol].(self, authorizee) if perms[symbol]
+      authorized = perms[symbol].(self, authorizee, symbol) if perms[symbol]
       authorized = @@fallback_rule.(self, authorizee) if @@fallback_rule && !perms[symbol]
 
       raise ForbiddenError.new(
