@@ -41,7 +41,7 @@ module ActionAuthorization
     end
     
     ##
-    # Defins a fallback rule. The fallback rule defined by this
+    # Defines a fallback rule. The fallback rule defined by this
     # class method will be used in every case where a permission rule is not
     # specified. This is intended to be used in situations where 
     # users wish to define some generic authorization check that will be run for
@@ -50,6 +50,15 @@ module ActionAuthorization
       @@fallback_rule = rule
     end
 
+    ##
+    # Checks whether the given actor (authorizee) is permitted to perform the given
+    # action on this instance of a model. Generally, this method is called by
+    # other parts of +rails-action-authorization+ and need not be invoked
+    # directly. It can be invoked directly if users need more precise control
+    # over a permission than is available using the default authorization flow.
+    # 
+    # Returns the model instance it is invoked on unless the actor (authorizee) is
+    # forbidden from performing the action, in which case it will raise a +ForbiddenError+.
     def is_authorized(action, authorizee)
       symbol = action.to_sym
       perms = self.class.get_perms
