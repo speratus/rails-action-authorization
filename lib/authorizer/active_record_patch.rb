@@ -3,7 +3,7 @@ module ActionAuthorization
   # This class contains all the patches to +ActiveRecord::Base+ that
   # make this library function on the model side. You should only
   # have to interact with these methods on concrete models and not by
-  # interacting with ActiveRecord::Base directly. 
+  # interacting with +ActiveRecord::Base+ directly. 
   class ActiveRecord::Base
 
     ##
@@ -19,7 +19,7 @@ module ActionAuthorization
     end
     
     ##
-    # Ensures that the +@@fallback_rule+ variable is defined.
+    # Ensures that the +fallback_rule+ class variable is defined.
     # Used internally. There should be no need for users to call this method directly.
     def self.init_fallback_rule
       @@fallback_rule = nil unless (self.class_variable_defined?(:@@fallback_rule))
@@ -35,6 +35,10 @@ module ActionAuthorization
     # 'posts#update'.
     #
     # names can also be symbols.
+    #
+    # @param *names [String, Symbol] The names of the actions which will use 
+    #   the given block for authorization.
+    # @param &block [Proc] The code to run on an authorization check.
     def self.define_rule(*names, &block)
       perms = self.get_perms
       names.each {|name| perms[name.to_sym] = block}
@@ -46,6 +50,8 @@ module ActionAuthorization
     # specified. This is intended to be used in situations where 
     # users wish to define some generic authorization check that will be run for
     # every action that doesn't have its own rule specified.
+    #
+    # @param &rule [Proc] The code to run when a rule is not defined for any action.
     def self.set_fallback_rule(&rule)
       @@fallback_rule = rule
     end
