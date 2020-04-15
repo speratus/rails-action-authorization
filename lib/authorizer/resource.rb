@@ -9,11 +9,17 @@ module ActionAuthorization
     class Resource
         ##
         # @return [String, Symbol] The action which +:actor+ is attempting to complete.
+        attr_reader :action
+        
         # @return [Model] The model attempting authorization (usually a +User+).
+        attr_reader :actor
+        
         # @return The list of models being authorized.
+        attr_reader :resources
+        
         # @return The options which are being used for authorization.
-        attr_reader :action, :actor, :resources, :options
-  
+        attr_reader :options
+        
         ##
         # Creates a new instance of +Resource+.
         #
