@@ -7,6 +7,11 @@ module ActionAuthorization
     # It is instantiated automatically by +ActionController::Metal#check_authorization+ and there
     # should be little need to instantiate it directly.
     class Resource
+        ##
+        # @return [String, Symbol] The action which +:actor+ is attempting to complete.
+        # @return [Model] The model attempting authorization (usually a +User+).
+        # @return The list of models being authorized.
+        # @return The options which are being used for authorization.
         attr_reader :action, :actor, :resources, :options
   
         ##
