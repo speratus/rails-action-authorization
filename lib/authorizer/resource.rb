@@ -55,6 +55,8 @@ module ActionAuthorization
               collect_permitted {|results| results.length == @resources.length}
           when :filter
               collect_permitted {|results| results.length > 0}
+          else
+            collect_permitted {|results| results.length > 0}
           end
         end
   
