@@ -23,6 +23,11 @@ module ActionAuthorization
             @options = options
         end
   
+        ##
+        # Returns the list of models passed into the constructor
+        # if the list passes authorization, otherwise raises
+        # +ForbiddenError+.
+        # @returns The list of models being authorized.
         def get
           return @resources if @resources.nil?
           return @resources if @resources.length == 0
