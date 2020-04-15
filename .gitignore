@@ -9,3 +9,5 @@ test/dummy/storage/
 test/dummy/tmp/
 coverage/
 rails\-action\-authorization\-[0-9]\.[0-9]\.[0-9]\.gem
+doc/
+.yardoc/

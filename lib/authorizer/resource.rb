@@ -1,7 +1,32 @@
 module ActionAuthorization
+
+    ##
+    # This class represents a generic list of models that are about to
+    # authorized.
+    #
+    # It is instantiated automatically by +ActionController::Metal#check_authorization+ and there
+    # should be little need to instantiate it directly.
     class Resource
-        attr_reader :action, :actor, :resources, :options
-  
+        ##
+        # @return [String, Symbol] The action which +:actor+ is attempting to complete.
+        attr_reader :action
+        
+        # @return [Model] The model attempting authorization (usually a +User+).
+        attr_reader :actor
+        
+        # @return The list of models being authorized.
+        attr_reader :resources
+        
+        # @return The options which are being used for authorization.
+        attr_reader :options
+        
+        ##
+        # Creates a new instance of +Resource+.
+        #
+        # @param action [String, Symbol] The name of the action being performed.
+        # @param actor [Model] The model attempting authorization.
+        # @param *resources [Model] The list of models being authorized.
+        # @param **options Any additional options regarding the authorization options.
         def initialize(action, actor, *resources, **options)
             @action = action
             @actor = actor
@@ -9,6 +34,11 @@ module ActionAuthorization
             @options = options
         end
   
+        ##
+        # Returns the list of models passed into the constructor
+        # if the list passes authorization, otherwise raises
+        # +ForbiddenError+.
+        # @returns The list of models being authorized.
         def get
           return @resources if @resources.nil?
           return @resources if @resources.length == 0
