@@ -30,7 +30,7 @@ jobs:
     # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
     # change this to (see https://github.com/ruby/setup-ruby#versioning):
     # uses: ruby/setup-ruby@v1
-      uses: ./.github/actions/ruby-setup-action
+      uses: ./.github/actions/install-ruby-deps
       with:
         ruby-version: ${{ matrix.ruby-version }}
     - name: Run tests
