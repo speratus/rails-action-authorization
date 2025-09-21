@@ -1,6 +1,9 @@
 require 'test_helper'
 
 class Authorizer::Test < ActiveSupport::TestCase
+
+  fixtures :posts, :users
+
   test "truth" do
     assert_kind_of Module, Authorizer
   end
