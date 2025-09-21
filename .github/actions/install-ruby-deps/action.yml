@@ -20,7 +20,7 @@ runs:
         RUBY_VERSION: ${{ inputs.ruby-version }}
     - name: Install Bundler
       run: |
-        gem install bundler
+        sudo gem install bundler
       shell: bash
     - name: Install project dependencies
       run: |
