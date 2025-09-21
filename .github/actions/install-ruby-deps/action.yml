@@ -1,0 +1,28 @@
+name: 'Install Ruby Dependencies'
+description: 'Installs Ruby and dependencies from Gemfile'
+inputs:
+  ruby-version:
+    description: 'The Ruby version to install'
+    required: true
+    default: '3.0'
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Mise-en-place
+      run: |
+        curl https://mise.run | sh
+      shell: bash
+    - name: Install Ruby
+      run: |
+        mise install ruby@$RUBY_VERSION
+      shell: bash
+      env:
+        RUBY_VERSION: ${{ inputs.ruby-version }}
+    - name: Install Bundler
+      run: |
+        gem install bundler
+      shell: bash
+    - name: Install project dependencies
+      run: |
+        bundle install
+      shell: bash
