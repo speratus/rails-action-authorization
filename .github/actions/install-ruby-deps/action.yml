@@ -33,3 +33,7 @@ runs:
       run: |
         sudo bundle install
       shell: bash
+    - name: Print Gem Path
+      run: |
+        sudo bundle info rake
+      shell: bash
