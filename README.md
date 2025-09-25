@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/speratus/rails-action-authorization.svg?branch=master)](https://travis-ci.org/speratus/rails-action-authorization)
+[![Test Gem](https://github.com/speratus/rails-action-authorization/actions/workflows/ruby-tests.yml/badge.svg)](https://github.com/speratus/rails-action-authorization/actions/workflows/ruby-tests.yml)
 [![codecov](https://codecov.io/gh/speratus/rails-action-authorization/branch/master/graph/badge.svg)](https://codecov.io/gh/speratus/rails-action-authorization)
 [![Maintainability](https://api.codeclimate.com/v1/badges/588fbef9d8a7c39bb071/maintainability)](https://codeclimate.com/github/speratus/authorizer/maintainability)
 
